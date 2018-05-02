@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+	      <div class="blog-header">
+	        <h1 class="blog-post-title">{{ post.title }}</h1>
+	      </div>
+	      <div class="row">
+	        <div class="col-sm-8 blog-main">
+	          <div class="blog-post">
+	            <p>
+	            	{{ post.text }}
+	            </p>	
+	            <p class="blog-post-meta">{{ post.created_date }} by <a href="#">{{ post.author }}</a></p>
+	            <a href="/blog/" >回首頁</a>
+                {% if next_post.id  %}
+
+                    <a href="/blog/{{next_post.id}}" >下
+一頁</a>
+                {% endif %}
+	          </div>
+	        </div>
+	      </div>
+{% endblock %}

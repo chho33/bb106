@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% for post in posts %}
+                        <div class="post">
+                            <div class="date">
+                                <p>發佈時間: {{ post.created_date }}</p>
+                            </div>
+                            <!--<h1><a href="/blog/{{post.id}}">{{ post.title }}</a></h1>--!>
+                            <h1><a href="{% url 'post_record' post.id %}">{{ post.title }}</a></h1>
+                            <p>{{ post.text | linebreaks }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <h4>發佈新文章:</h4>
+                </div>
+                <div class="col-md-8">
+                    <form action="{% url 'add_record' %}" method="post" accept-charset="utf-8">
+                    {% csrf_token %}
+                        <table>
+                            {{post_form.as_table}}
+                        </table>
+                        <input type="submit" name="add_record" value="提交">
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endblock %}
